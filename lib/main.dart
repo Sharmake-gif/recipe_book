@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cw2/recipe_detail.dart';
+import 'recipe.dart';
 
 void main() => runApp(const MyApp());
 
