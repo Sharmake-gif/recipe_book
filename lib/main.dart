@@ -1,125 +1,208 @@
 import 'package:flutter/material.dart';
+import 'package:cw2/recipe_detail.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    const String appTitle = 'Recipes Home';
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      title: appTitle,
+      home: RecipeHomeScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class RecipeHomeScreen extends StatelessWidget {
+  const RecipeHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    const String appTitle = 'Recipes Home';
+
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      appBar: AppBar(title: const Text(appTitle)),
+      body: SingleChildScrollView(
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+          children: [
+            TitleSection(name: 'Egg Benedict', location: '40 mins'),
+            ButtonSection(
+              name: 'Egg Benedict',
+              location: '40 mins',
+              ingredients: [
+                '2 eggs',
+                '1 English muffin',
+                '2 slices ham',
+                'Hollandaise sauce',
+              ],
+              steps: [
+                'Toast the English muffin and place ham on top.',
+                'Poach the eggs in simmering water.',
+                'Place poached eggs on the muffin and top with Hollandaise sauce.',
+                'Serve immediately.',
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            TitleSection(name: 'Blueberry Waffles', location: '30 mins'),
+            ButtonSection(
+              name: 'Blueberry Waffles',
+              location: '30 mins',
+              ingredients: [
+                '1 cup flour',
+                '1 egg',
+                '1 cup milk',
+                '2 tbsp sugar',
+                '1 tsp baking powder',
+                '1/2 tsp salt',
+                '1/2 cup blueberries',
+              ],
+              steps: [
+                'Mix all ingredients in a bowl except blueberries.',
+                'Preheat waffle iron and grease it lightly.',
+                'Pour batter into the iron and sprinkle blueberries.',
+                'Cook until golden brown and serve with syrup.',
+              ],
+            ),
+            TitleSection(
+                name: 'Strawberry Yogurt Parfait', location: '10 mins'),
+            ButtonSection(
+              name: 'Strawberry Yogurt Parfait',
+              location: '10 mins',
+              ingredients: [
+                '1 cup Greek yogurt',
+                '1/2 cup granola',
+                '1/2 cup strawberries (sliced)',
+                '1 tbsp honey',
+              ],
+              steps: [
+                'In a glass, layer yogurt, granola, and strawberries.',
+                'Repeat the layers until the glass is full.',
+                'Drizzle honey on top and serve immediately.',
+              ],
+            ),
+            TitleSection(name: 'Smoked Salmon Bagel', location: '15 mins'),
+            ButtonSection(
+              name: 'Smoked Salmon Bagel',
+              location: '15 mins',
+              ingredients: [
+                '1 bagel (sliced)',
+                '2 tbsp cream cheese',
+                '3 slices smoked salmon',
+                '1 tsp capers',
+                '1 slice red onion',
+              ],
+              steps: [
+                'Toast the bagel until golden brown.',
+                'Spread cream cheese evenly on both halves.',
+                'Top with smoked salmon, capers, and red onion.',
+                'Serve immediately.',
+              ],
+            ),
+            TitleSection(
+                name: 'Somali Pancakes (Malawax)', location: '25 mins'),
+            ButtonSection(
+              name: 'Somali Pancakes (Malawax)',
+              location: '25 mins',
+              ingredients: [
+                '2 cups flour',
+                '2 tbsp sugar',
+                '1 tsp yeast',
+                '1/2 tsp cardamom powder',
+                '1 cup warm milk',
+                '1 egg',
+                '1/2 tsp salt',
+                'Butter for cooking',
+              ],
+              steps: [
+                'Mix flour, sugar, yeast, salt, and cardamom in a bowl.',
+                'Add warm milk and egg, then whisk until smooth.',
+                'Let the batter rest for 30 minutes.',
+                'Heat a pan with butter and pour batter in small circles.',
+                'Cook until bubbles form, then flip and cook until golden brown.',
+                'Serve warm with honey or tea.',
+              ],
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class TitleSection extends StatelessWidget {
+  const TitleSection({super.key, required this.name, required this.location});
+
+  final String name;
+  final String location;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
+                Text(location, style: TextStyle(color: Colors.grey[500])),
+              ],
+            ),
+          ),
+          Icon(Icons.star, color: Colors.red[500]),
+          const Text('41'),
+        ],
+      ),
+    );
+  }
+}
+
+class ButtonSection extends StatelessWidget {
+  final String name;
+  final String location;
+  final List<String> ingredients;
+  final List<String> steps;
+
+  const ButtonSection({
+    super.key,
+    required this.name,
+    required this.location,
+    required this.ingredients,
+    required this.steps,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final Color color = Theme.of(context).primaryColor;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => RecipeDetail(
+                  name: name,
+                  location: location,
+                  ingredients: ingredients,
+                  steps: steps,
+                ),
+              ),
+            );
+          },
+          child: Row(
+            children: [
+              Icon(Icons.near_me, color: color),
+              const SizedBox(width: 5),
+              const Text('RECIPE'),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
